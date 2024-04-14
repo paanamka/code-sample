@@ -1,16 +1,3 @@
-/* #include <iostream>
-#include <stacklst/stacklst.hpp>
-#include <complex/complex.hpp>
-
-int main() {
-	StackLst a;
-	std::cout << a.IsEmpty() << std::endl;
-	a.Push(Complex(1, 2));
-	std::cout << a.Top() << std::endl;
-	a.Push(Complex(3, 4));
-	std::cout << a.Top() << std::endl;
-} */
-
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <stacklst/stacklst.hpp>
 #include <complex/complex.hpp>
