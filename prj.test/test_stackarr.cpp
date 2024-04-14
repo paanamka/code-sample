@@ -1,31 +1,3 @@
-/* 
-
-#include <iostream>
-#include <stackarr/stackarr.hpp>
-#include <complex/complex.hpp>
-
-int main() {
-	StackArr a;
-	a.Push(Complex(1,9));
-
-	StackArr b{ a };
-	std::cout << b.Top() << std::endl;
-
-	a.Push(Complex(3, 4));
-	std::cout << a.Top() << std::endl;
-	std::cout << a.IsEmpty() << std::endl;
-
-	a.Pop();
-	std::cout << a.Top() << std::endl;
-
-	StackArr c;
-	c = b;
-	std::cout << c.Top() << std::endl;
-
-	c.Clear();
-	std::cout << c.IsEmpty() << std::endl;
-} */
-
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <stackarr/stackarr.hpp>
 #include <complex/complex.hpp>
@@ -56,10 +28,6 @@ TEST_CASE("initializer list ctor") {
 
 TEST_CASE("copy ctor") {
   StackArr ss = { z1, z2, z3 };
-  /*StackArr ss;
-  ss.Push(z1);
-  ss.Push(z2);
-  ss.Push(z3); */
   StackArr s (ss);
 
   CHECK_EQ(z3, s.Top());
@@ -126,22 +94,12 @@ TEST_CASE("clear") {
 
 TEST_CASE("push / pop") {
   StackArr s;
-  s.Push(Complex(1, 2));
-  s.Push(Complex(2, 3));
-  s.Push(Complex(3, 4));
-  s.Push(Complex(4, 5));
-  s.Push(Complex(1, 2));
-  s.Push(Complex(2, 3));
-  s.Push(Complex(3, 4));
-  s.Push(Complex(4, 5));
-  s.Push(Complex(1, 2));
-  s.Push(Complex(2, 3));
-  s.Push(Complex(3, 4));
-  s.Push(Complex(4, 5));
-  s.Push(Complex(1, 2));
-  s.Push(Complex(2, 3));
-  s.Push(Complex(3, 4));
-  s.Push(Complex(4, 5));
+  for (int i = 0; i < 100; ++i) {
+    s.Push(Complex(1, 2));
+    s.Push(Complex(2, 3));
+    s.Push(Complex(3, 4));
+    s.Push(Complex(4, 5));
+  }
 
   Complex z3{ 3, 4 };
   Complex z4{ 4, 5 };
