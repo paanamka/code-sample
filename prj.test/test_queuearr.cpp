@@ -97,70 +97,6 @@ TEST_CASE("init list ctor") {
 	CHECK_EQ(t.IsEmpty(), true);
 }
 
-TEST_CASE("eq operator") {
-
-	QueueArr q{z1};
-	QueueArr r;
-	r = q;
-	CHECK_EQ(q.IsEmpty(), false);
-	CHECK_EQ(r.IsEmpty(), false);
-	CHECK_EQ(q.Top(), z1);
-	CHECK_EQ(q.End(), z1);
-	CHECK_EQ(r.Top(), z1);
-	CHECK_EQ(r.End(), z1);
-
-	QueueArr empty1;
-	QueueArr empty2;
-	empty1 = empty2;
-	CHECK_EQ(empty1.IsEmpty(), true);
-	CHECK_THROWS(empty1.Top());
-
-	QueueArr t = { z1, z2, z3 };
-	CHECK_EQ(t.IsEmpty(), false);
-	CHECK_EQ(t.Top(), z1);
-	CHECK_EQ(t.End(), z3);
-
-	QueueArr TEST;
-	TEST.Push(z1);
-	TEST = { z2, z3 };
-
-	CHECK_EQ(TEST.Top(), z2);
-	CHECK_EQ(TEST.End(), z3);
-
-	QueueArr LARGE = { z1, z2, z3, z4, z1, z2, z3, z4, z1, z2, z3, z4 };
-	QueueArr smol = { z1, z2, z3 };
-	smol = LARGE;
-	CHECK_EQ(smol.Top(), z1);
-	CHECK_EQ(smol.End(), z4);
-
-	LARGE = TEST;
-	CHECK_EQ(LARGE.Top(), z2);
-
-	QueueArr big = { z1, z2, z3, z4, z5, z6, z7, z8, z9 };
-	QueueArr small = { z1, z2, z3, z4, z5, z6, z7, z8 };
-	big = small;
-	CHECK_EQ(big.End(), z8);
-	big.Pop();
-	big.Pop();
-	big.Pop();
-	big.Pop();
-	big.Pop();
-	big.Pop();
-	big.Pop();
-	big.Pop();
-	CHECK_EQ(big.IsEmpty(), true);
-
-	small.Pop();
-	small.Pop();
-	small.Pop();
-	small.Pop();
-	small.Pop();
-	small.Pop();
-	small.Pop();
-	small.Pop();
-	CHECK_EQ(small.IsEmpty(), true);
-
-}
 
 TEST_CASE("push") {
 
@@ -182,30 +118,12 @@ TEST_CASE("push") {
 	CHECK_EQ(q.End(), z9);
 
 	QueueArr w;
-	w.Push(Complex(1, 2));
-	w.Push(Complex(2, 3));
-	w.Push(Complex(3, 4));
-	w.Push(Complex(4, 5));
-	w.Push(Complex(1, 2));
-	w.Push(Complex(2, 3));
-	w.Push(Complex(3, 4));
-	w.Push(Complex(4, 5));
-	w.Push(Complex(1, 2));
-	w.Push(Complex(2, 3));
-	w.Push(Complex(3, 4));
-	w.Push(Complex(4, 5));
-	w.Push(Complex(1, 2));
-	w.Push(Complex(2, 3));
-	w.Push(Complex(3, 4));
-	w.Push(Complex(4, 5));
-	w.Push(Complex(1, 2));
-	w.Push(Complex(2, 3));
-	w.Push(Complex(3, 4));
-	w.Push(Complex(4, 5));
-	w.Push(Complex(1, 2));
-	w.Push(Complex(2, 3));
-	w.Push(Complex(3, 4));
-	w.Push(Complex(4, 5));
+	for (int i = 0; i < 100; ++i) {
+		w.Push(Complex(1, 2));
+		w.Push(Complex(2, 3));
+		w.Push(Complex(3, 4));
+		w.Push(Complex(4, 5));
+	}
 
 	CHECK_EQ(w.Top(), z1);
 	CHECK_EQ(w.End(), z4);
@@ -350,7 +268,7 @@ TEST_CASE("COPY_CTOR") {
 	CHECK(qac.IsEmpty());
 }
 
-TEST_CASE("operator eq") {
+TEST_CASE("eq operator") {
 	QueueArr qa1{ c1 };
 	QueueArr qa2{ c1, c2 };
 	QueueArr qa3{ c1, c2, c3 };
